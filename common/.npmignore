@@ -1,0 +1,4 @@
+#whatever is not required are in npmignore file
+#even the src folder bcz we have file in dist folder nameindex.d.ts and index.js
+
+src
