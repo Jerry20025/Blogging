@@ -1,6 +1,6 @@
 import { BlogCard } from "../components/BlogCard"
 import { AppBar } from '../components/AppBar';
-import {  useBlogs } from "../hooks";
+import {  Blog, useBlogs } from "../hooks";
 import { Spinner } from '../components/Spinner';
 //@ts-ignore
 import LeftSidePannel from '../components/LeftSide';
@@ -11,6 +11,7 @@ export const Blogs = () => {
       //@ts-ignore
   //@ts-ignore
   const {loading,blogs}=useBlogs();
+  let reversedNumbers: Blog[] = [...blogs].reverse();
   if(loading){
     return <div className="flex justify-center items-center h-screen">
       <Spinner/>
@@ -29,14 +30,14 @@ export const Blogs = () => {
             </div>
             <div className="flex justify-center overflow-y-hidden sm:px-44 md:px-44 lg:px-[500px] lg:mt-[-60px]">
               <div className="max-w-3xl w-full overflow-y-scroll h-[600px] overflow-x-hidden">
-                {blogs.map((item,idx)=><BlogCard
-                  key={blogs[blogs.length-1-idx].id}
-                  authorName={blogs[blogs.length-1-idx].author.name ||"anonymus"}
-                  title={blogs[blogs.length-1-idx].title}
-                  content={blogs[blogs.length-1-idx].content}
+              {reversedNumbers.map(blog=><BlogCard
+                  key={blog.id}
+                  authorName={blog.author.name||"anonymus"}
+                  title={blog.title}
+                  content={blog.content||"no content available"}
                   publishedDate=""
-                  id={blogs[blogs.length-1-idx].id}
-                  isdelete="no"
+                  id={blog.id}
+                  isdelete="yes"
                 />)} 
               </div>
           </div>

@@ -25,7 +25,7 @@ const MyPost = () => {
             }
         )
     },[authId])
-    
+    let reversedNumbers: Blog[] = [...blogs].reverse();
     if(loading){
       return <div className="flex justify-center items-center h-screen">
         <Spinner/>
@@ -53,13 +53,13 @@ const MyPost = () => {
             </div>
             <div className="flex justify-center overflow-y-hidden sm:px-44 md:px-44 lg:px-[500px] lg:mt-[-60px]">
               <div className="max-w-3xl w-full overflow-y-scroll h-[600px] overflow-x-hidden">
-                {blogs.map((item,idx)=><BlogCard
-                  key={blogs[blogs.length-1-idx].id}
-                  authorName={blogs[blogs.length-1-idx].author.name ||"anonymus"}
-                  title={blogs[blogs.length-1-idx].title}
-                  content={blogs[blogs.length-1-idx].content||"no content available"}
+                {reversedNumbers.map(blog=><BlogCard
+                  key={blog.id}
+                  authorName={blog.author.name||"anonymus"}
+                  title={blog.title}
+                  content={blog.content||"no content available"}
                   publishedDate=""
-                  id={blogs[blogs.length-1-idx].id}
+                  id={blog.id}
                   isdelete="yes"
                 />)} 
         
